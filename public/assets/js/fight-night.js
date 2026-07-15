@@ -47,6 +47,74 @@
     },
   };
 
+  let audioEnabled = false;
+  let audioContext;
+
+  function getAudioContext() {
+    if (!audioContext) {
+      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+      if (!AudioContextClass) return null;
+      audioContext = new AudioContextClass();
+    }
+
+    if (audioContext.state === "suspended") {
+      audioContext.resume();
+    }
+
+    return audioContext;
+  }
+
+  function playTone(frequency, startTime, duration, type = "square", volume = 0.035) {
+    if (!audioEnabled) return;
+    const context = getAudioContext();
+    if (!context) return;
+
+    const oscillator = context.createOscillator();
+    const gain = context.createGain();
+
+    oscillator.type = type;
+    oscillator.frequency.setValueAtTime(frequency, startTime);
+    gain.gain.setValueAtTime(0.0001, startTime);
+    gain.gain.exponentialRampToValueAtTime(volume, startTime + 0.012);
+    gain.gain.exponentialRampToValueAtTime(0.0001, startTime + duration);
+
+    oscillator.connect(gain);
+    gain.connect(context.destination);
+    oscillator.start(startTime);
+    oscillator.stop(startTime + duration + 0.02);
+  }
+
+  function playSound(soundName) {
+    if (!audioEnabled) return;
+    const context = getAudioContext();
+    if (!context) return;
+
+    const now = context.currentTime;
+
+    if (soundName === "select") {
+      playTone(220, now, 0.055);
+      playTone(440, now + 0.055, 0.075);
+      return;
+    }
+
+    if (soundName === "confirm") {
+      playTone(330, now, 0.06, "square", 0.04);
+      playTone(660, now + 0.065, 0.09, "square", 0.04);
+      playTone(990, now + 0.13, 0.08, "triangle", 0.03);
+      return;
+    }
+
+    if (soundName === "dialogue") {
+      playTone(180, now, 0.045, "sawtooth", 0.025);
+      return;
+    }
+
+    if (soundName === "error") {
+      playTone(140, now, 0.08, "sawtooth", 0.03);
+      playTone(110, now + 0.075, 0.08, "sawtooth", 0.03);
+    }
+  }
+
   function hideIntro() {
     if (!bootScreen) return;
     bootScreen.classList.add("is-hidden");
@@ -62,7 +130,7 @@
       return;
     }
 
-    const introTimer = window.setTimeout(hideIntro, 2650);
+    const introTimer = window.setTimeout(hideIntro, 5200);
     skipIntro?.addEventListener("click", () => {
       window.clearTimeout(introTimer);
       hideIntro();
@@ -147,6 +215,8 @@
       localStorage.setItem("nomadSelectedFighter", fighterKey);
     }
 
+    playSound("select");
+
     if (goToForm) {
       scrollToBetForm();
     }
@@ -179,6 +249,7 @@
       current = current === "barba" ? "cabelo" : "barba";
       if (dialogueName) dialogueName.textContent = fighters[current].label;
       if (dialogueQuote) dialogueQuote.textContent = fighters[current].quote;
+      playSound("dialogue");
     }
 
     dialogueNext?.addEventListener("click", nextDialogue);
@@ -192,8 +263,14 @@
 
   function setupSoundToggle() {
     soundToggle?.addEventListener("click", () => {
-      soundToggle.setAttribute("aria-pressed", "false");
-      soundToggle.textContent = "SOUND OFF";
+      audioEnabled = !audioEnabled;
+      soundToggle.setAttribute("aria-pressed", String(audioEnabled));
+      soundToggle.textContent = audioEnabled ? "SOUND ON" : "SOUND OFF";
+
+      if (audioEnabled) {
+        getAudioContext();
+        playSound("confirm");
+      }
     });
   }
 
@@ -347,6 +424,7 @@
 
     if (!payload.player_name || !payload.fighter) {
       setBetStatus("CHOOSE A NAME AND FIGHTER FIRST.");
+      playSound("error");
       return;
     }
 
@@ -369,9 +447,11 @@
       setSelectedFighter(payload.fighter, false, false);
       betMessage.value = "";
       setBetStatus("PICK CONFIRMED. SCOREBOARD UPDATED.");
+      playSound("confirm");
       await loadPicks();
     } catch (error) {
       setBetStatus("ONLINE SCOREBOARD ERROR. CHECK SUPABASE CONFIG.");
+      playSound("error");
     } finally {
       setBetFormDisabled(false);
     }
