@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#060606">
+  <meta name="description" content="Nomad Fighters: Nomad Fight Night, luta exibição entre Barba e Cabelo em 17.07.2026.">
+  <title>Nomad Fighters - Nomad Fight Night</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=IBM+Plex+Mono:wght@500;700&family=Inter:wght@500;700;900&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="public/assets/images/fight/briga.jpeg">
+  <link rel="preload" as="image" href="public/assets/logos/nomad.svg">
+  <link rel="stylesheet" href="public/assets/css/fight-night.css">
+</head>
+<body>
+  <a class="skip-link" href="#versus">Pular para o confronto</a>
+
+  <div class="boot-screen" id="bootScreen" aria-label="Abertura Nomad Fighters">
+    <button class="skip-intro" type="button" id="skipIntro">SKIP INTRO</button>
+    <div class="boot-core" aria-hidden="true">
+      <img src="public/assets/logos/nomad.svg" width="139" height="27" alt="">
+      <p>NOMAD ARCADE SYSTEM</p>
+      <p>INITIALIZING FIGHT PROTOCOL...</p>
+      <div class="boot-progress"><span></span></div>
+      <strong class="boot-callout" data-step="round">ROUND 1</strong>
+      <strong class="boot-callout" data-step="ready">READY?</strong>
+      <strong class="boot-callout" data-step="fight">FIGHT!</strong>
+    </div>
+  </div>
+
+  <main id="main">
+    <section class="versus-screen" id="versus" aria-labelledby="site-title">
+      <picture class="faceoff-bg">
+        <img src="public/assets/images/fight/briga.jpeg" width="864" height="1536" alt="João Panazollo e Lorenzo se encarando antes da luta.">
+      </picture>
+
+      <div class="screen-texture" aria-hidden="true"></div>
+      <div class="impact-lines" aria-hidden="true"></div>
+
+      <header class="game-header" aria-label="Informacoes principais do evento">
+        <a class="brand-mark" href="#versus" aria-label="Nomad Innovation">
+          <img src="public/assets/logos/nomad.svg" width="139" height="27" alt="Nomad">
+        </a>
+        <div class="title-stack">
+          <h1 id="site-title">NOMAD FIGHTERS</h1>
+        </div>
+        <div class="event-chip" aria-label="17 de julho de 2026, as 10 horas, FSILVA Academia">
+          <span>17.07.2026</span>
+          <span>10:00</span>
+          <span>FSILVA ACADEMIA</span>
+        </div>
+      </header>
+
+      <div class="combat-hud" aria-label="HUD visual do confronto">
+        <div class="life-side life-left">
+          <span>BARBA</span>
+          <div class="life-track" aria-hidden="true"><i></i></div>
+        </div>
+        <div class="round-timer" aria-live="polite">
+          <span id="hudStatus">D-00</span>
+          <strong id="hudCountdown">00:00:00</strong>
+        </div>
+        <div class="life-side life-right">
+          <span>CABELO</span>
+          <div class="life-track" aria-hidden="true"><i></i></div>
+        </div>
+      </div>
+
+      <div class="fighter-side fighter-side-left" data-fighter-side="barba">
+        <span class="player-tag">PLAYER 1</span>
+        <p class="alias">BARBA</p>
+        <p class="real-name">JOÃO PANAZOLLO</p>
+        <p class="class-name">LINUS KERWALD E VIRGEM</p>
+        <dl class="quick-stats">
+          <div><dt>KG</dt><dd>90</dd></div>
+          <div><dt>ALT</dt><dd>1,81 M</dd></div>
+          <div><dt>AGE</dt><dd>21</dd></div>
+        </dl>
+      </div>
+
+      <div class="fighter-side fighter-side-right" data-fighter-side="cabelo">
+        <span class="player-tag">PLAYER 2</span>
+        <p class="alias">CABELO</p>
+        <p class="real-name">LORENZO</p>
+        <p class="class-name">"BA, CHAPEI"</p>
+        <dl class="quick-stats">
+          <div><dt>KG</dt><dd>64</dd></div>
+          <div><dt>ALT</dt><dd>1,72 M</dd></div>
+          <div><dt>AGE</dt><dd>19</dd></div>
+        </dl>
+      </div>
+
+      <div class="versus-mark" aria-hidden="true">VS</div>
+
+      <div class="hero-copy">
+        <p>O CONFLITO DO ANO.</p>
+        <a href="#fighter-select">PRESS START</a>
+      </div>
+    </section>
+
+    <section class="data-screen page-section" aria-labelledby="data-title">
+      <div class="section-kicker">DATA ANALYTICS</div>
+      <h2 id="data-title">FIGHTER DATA</h2>
+      <div class="data-board" aria-label="Comparativo entre Barba e Cabelo">
+        <div class="data-row data-head">
+          <span>BARBA</span>
+          <span>STAT</span>
+          <span>CABELO</span>
+        </div>
+        <div class="data-row"><strong>1,81 M</strong><span>ALTURA</span><strong>1,72 M</strong></div>
+        <div class="data-row"><strong>90 KG</strong><span>PESO</span><strong>64 KG</strong></div>
+        <div class="data-row"><strong>21</strong><span>IDADE</span><strong>19</strong></div>
+        <div class="data-row"><strong>DEV C# BOY</strong><span>ROLE</span><strong>ESTAGIÁRIO PLENO</strong></div>
+        <div class="weight-gap">
+          <span>DIFERENÇA DE PESO</span>
+          <strong>26 KG</strong>
+          <em>26 KG SEPARAM OS DOIS</em>
+        </div>
+      </div>
+    </section>
+
+    <section class="trash-screen page-section" aria-labelledby="trash-title">
+      <div class="section-kicker">PRE-FIGHT DIALOGUE</div>
+      <h2 id="trash-title">TRASH TALK</h2>
+      <div class="dialogue-stage" tabindex="0" id="dialogueStage" aria-live="polite">
+        <div class="portrait-stamp" id="dialogueName">BARBA</div>
+        <blockquote id="dialogueQuote">"ALÉM DELE NÃO TER CABELO, NÃO SABE NEM FALAR 'LAYOUT'. VOU ACABAR COM ELE."</blockquote>
+        <button class="dialogue-next" type="button" id="dialogueNext">
+          <span class="desktop-copy">PRESS ENTER TO CONTINUE</span>
+          <span class="mobile-copy">TOQUE PARA CONTINUAR</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="select-screen page-section" id="fighter-select" aria-labelledby="select-title">
+      <div class="section-kicker">CHARACTER SELECT</div>
+      <h2 id="select-title">SELECT YOUR FIGHTER</h2>
+      <p class="select-subtitle">ESCOLHA SEU LADO</p>
+
+      <div class="fighter-grid" role="list" aria-label="Escolha seu lutador">
+        <button class="fighter-choice is-barba" type="button" data-fighter="barba" role="listitem" aria-pressed="false">
+          <img src="public/assets/images/fight/joao.jpeg" width="864" height="1536" loading="lazy" alt="João Barba Panazollo com braços cruzados.">
+          <span class="choice-frame" aria-hidden="true"></span>
+          <span class="choice-player">PLAYER 1</span>
+          <strong>BARBA</strong>
+          <span>JOÃO "BARBA" PANAZOLLO</span>
+          <span class="choice-class">HEAVYWEIGHT DEVELOPER</span>
+          <span class="choice-line">POWER BUILD · DESENVOLVEDOR · 90 KG</span>
+          <span class="special">SPECIAL: PULL REQUEST PUNCH</span>
+        </button>
+
+        <button class="fighter-choice is-cabelo" type="button" data-fighter="cabelo" role="listitem" aria-pressed="false">
+          <img src="public/assets/images/fight/lorenzo.jpeg" width="864" height="1536" loading="lazy" alt="Lorenzo Cabelo em pe olhando para a camera.">
+          <span class="choice-frame" aria-hidden="true"></span>
+          <span class="choice-player">PLAYER 2</span>
+          <strong>CABELO</strong>
+          <span>LORENZO "CABELO"</span>
+          <span class="choice-class">AGILE INTERN</span>
+          <span class="choice-line">SPEED BUILD · ESTAGIÁRIO PLENO · 64 KG</span>
+          <span class="special">SPECIAL: INTERN COUNTER</span>
+        </button>
+      </div>
+
+      <div class="selection-output" aria-live="polite">
+        <strong id="selectionStatus">PLAYER 1 AWAITING INPUT</strong>
+        <span id="selectionDetail">GOLPES ESPECIAIS PURAMENTE FICTÍCIOS.</span>
+        <button type="button" id="changeFighter" hidden>CHANGE FIGHTER</button>
+      </div>
+    </section>
+
+    <section class="bets-screen page-section" id="fight-picks" aria-labelledby="bets-title">
+      <div class="section-kicker">PLAYER CHOICE</div>
+      <h2 id="bets-title">LOCK YOUR PICK</h2>
+      <p class="bet-disclaimer">PALPITE INTERNO E SIMBOLICO. SEM PIX, SEM ODDS, SEM PAGAMENTO PELO SITE.</p>
+
+      <div class="bet-arena">
+        <form class="bet-form" id="betForm">
+          <label>
+            <span>PLAYER NAME</span>
+            <input id="betName" name="player_name" type="text" maxlength="40" autocomplete="name" placeholder="SEU NOME" required>
+          </label>
+
+          <label>
+            <span>FIGHTER</span>
+            <select id="betFighter" name="fighter" required>
+              <option value="">SELECT</option>
+              <option value="barba">BARBA</option>
+              <option value="cabelo">CABELO</option>
+            </select>
+          </label>
+
+          <label>
+            <span>VALOR SIMBOLICO</span>
+            <input id="betAmount" name="symbolic_amount" type="number" min="0" max="10000" step="1" inputmode="decimal" placeholder="R$ 0">
+          </label>
+
+          <label class="bet-message">
+            <span>TRASH TALK OPCIONAL</span>
+            <input id="betMessage" name="message" type="text" maxlength="90" placeholder="MANDA O RECADO">
+          </label>
+
+          <button class="bet-submit" type="submit">CONFIRM PICK</button>
+          <p class="bet-status" id="betStatus" role="status">CONNECTING TO ONLINE SCOREBOARD...</p>
+        </form>
+
+        <aside class="bet-scoreboard" aria-label="Placar de palpites">
+          <div class="score-row is-barba-score">
+            <span>BARBA PICKS</span>
+            <strong id="barbaPickCount">0</strong>
+            <em id="barbaPickAmount">R$ 0</em>
+          </div>
+          <div class="score-row is-cabelo-score">
+            <span>CABELO PICKS</span>
+            <strong id="cabeloPickCount">0</strong>
+            <em id="cabeloPickAmount">R$ 0</em>
+          </div>
+          <div class="total-picks" id="totalPicks">0 PLAYERS LOCKED IN</div>
+          <ul class="picks-feed" id="picksFeed">
+            <li>WAITING FOR FIRST PLAYER...</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="final-screen page-section" aria-labelledby="final-title">
+      <div class="final-panel">
+        <div class="section-kicker">FINAL STAGE</div>
+        <h2 id="final-title">NOMAD FIGHT NIGHT</h2>
+        <div class="countdown" id="countdown" aria-live="polite">
+          <span><strong id="countDays">00</strong><em>DAYS</em></span>
+          <span><strong id="countHours">00</strong><em>HOURS</em></span>
+          <span><strong id="countMin">00</strong><em>MIN</em></span>
+          <span><strong id="countSec">00</strong><em>SEC</em></span>
+        </div>
+        <p class="event-line">17 JUL 2026 · 10H · FSILVA ACADEMIA</p>
+        <p class="rules-line">LUTA EXIBIÇÃO · ENCERRAMENTO POR INTERRUPÇÃO DO ÁRBITRO</p>
+        <p class="final-punch">O CONFLITO SAIU DO SLACK. AGORA É NO RINGUE.</p>
+      </div>
+    </section>
+  </main>
+
+  <button class="sound-toggle" type="button" aria-pressed="false">SOUND OFF</button>
+  <div class="p1-cursor" aria-hidden="true">P1</div>
+
+  <footer class="site-footer">
+    NOMAD INNOVATION · 2026
+  </footer>
+
+  <script src="public/assets/js/bets-config.js"></script>
+  <script src="public/assets/js/fight-night.js" defer></script>
+</body>
+</html>
